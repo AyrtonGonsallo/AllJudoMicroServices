@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
 
 
 @Configuration
@@ -22,6 +23,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		http.cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues());
+
 		//http.formLogin();//activer un formulaire d'authentifcation seulement pour statefull
 		//http.authorizeRequests().anyRequest().permitAll();//aucune requette ne necessite une authentification prealable
 		//je ne peux pas envoyer de requette post 

@@ -52,9 +52,9 @@ public class JwtAutorisationFilter extends OncePerRequestFilter{
 					filterChain.doFilter(request, response);//tu passes au filtre suivant 
 				} catch (Exception e) {
 					// TODO: handle exception
-					response.setHeader("error message", e.getMessage());
+					response.setStatus(401);
+					response.getWriter().write(e.getMessage());
 					System.out.println(e.getMessage());
-					response.sendError(HttpServletResponse.SC_FORBIDDEN);
 				}
 				
 			}else {
